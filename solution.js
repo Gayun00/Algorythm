@@ -1,20 +1,10 @@
 function solution(price, money, count) {
     
-    arr=[];
-    for(i=0; i<count; i++){
-    arr.push(price*(count-i))
-    }     
-             
-    var result = arr.reduce(function sum(a,b){
-        return a + b
-    })
-    
-    if((result-money)>0){
-        var answer = result-money
-        }
-    else{
-        var answer = 0
+    let answer = 0;
+
+    for (let i = 1; i <= count; i++) {
+        answer += price * i;
     }
 
-    return answer;
+    return answer > money ? answer - money : 0;
 }
