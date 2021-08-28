@@ -1,5 +1,5 @@
 function solution(price, money, count) {
-    var answer = -1;
+    
     arr=[];
     for(i=0; i<count; i++){
     arr.push(price*(count-i))
@@ -15,5 +15,6 @@ function solution(price, money, count) {
     else{
         var answer = 0
     }
+
     return answer;
 }
