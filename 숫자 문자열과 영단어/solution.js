@@ -1,14 +1,11 @@
-function solution(s){
-  let matchEl = [];
-  let arr = ["zero","one","two","three","four","five","six","seven","eight","nine","ten"]
-for(let i=0; i<arr.length;i++) {
-  if(s1.match(arr[i])){
-      matchEl.push(arr[i])
+function solution(s) {
+  let numbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+  var answer = s;
+
+  for(let i = 0; i < numbers.length; i++) {
+      let arr = answer.split(numbers[i]);
+      answer = arr.join(i);
   }
+
+  return Number(answer);
 }
-  for(let i = 0; i < matchEl.length; i++) {
-    const replaceStr = s1.replace(matchEl[i],)
-  }
-     let y = s1.replace(arr[i],[i])
-}
-  
