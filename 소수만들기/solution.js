@@ -1,37 +1,25 @@
-function solution(nums) {   
-    arr = [1,2,3,4]
-    let results = [];
-    let count = [];
-    for(let i = 0; i<nums.length; i++) {
-        for(let j = i+1; j<nums.length; j++) {
-            for(let k = j+1; k<nums.length; k++){
-      
-                results = [nums[i],nums[j],nums[k]]
-      console.log(results)
-                const resultsSum = results.reduce((sum,curr) => {
-                    return sum+curr;
-                },0)
-      console.log(resultsSum)
-      
-                if(isPrime(resultsSum)) {
-                    count++;
-      
-                }
-      
-            }
+function solution(nums) {
+  let answer = 0;
+  
+  //1. 3자리 숫자 만들기
+  const len = nums.length;
+  for (let i = 0; i < len; i++) {
+    for (let j = i+1; j < len; j++) {
+      for (let k = j+1; k < len; k++) {
+        const number = nums[i]+nums[j]+nums[k];
+        if (isPrime(number))
+          answer++;
         }
-    function isPrime(number) {
-        if(number === 2)
-            return true;
-
-        for(let i = 2; i<=number/2; i++){
-            if(number % i === 0){
-                return false;
-            }
-        }
-        return true;
     }
-    const answer = count;
-    return answer;
-}
+  }
+
+  //2. 소수 판별(2~number까지 하나씩 비교)
+  function isPrime(number) {
+    if (number < 2) return true;
+    for (let i = 2; i < number; i++) {
+      if (number % i == 0) return false;
+    }
+    return true;
+  }
+  return answer;
 }
