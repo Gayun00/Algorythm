@@ -1,33 +1,13 @@
 function solution(n){
-  let arr = [];
-  let count = 0;
-  for(k=2; k <= n; k++){
-    arr = [];
-    for(i=2; i < k; i++){
-      
-      arr.push(i);
-    }
+  const nArr = new Array(n).fill(1)
 
-    const isPrime = arr.every((el)=>{
-      return k % el !== 0;
-    })
+ nArr[0] = 0;
+ for(let i = 2; i*i <= n; i++){
 
-    if(isPrime)count++
+     for(let j = i*i; j <= n; j+=i){
+         nArr[j-1]=0;
+     }
+ }
 
-  }
-    let answer = count;
-    return answer;
+ return nArr.filter((el)=>el==1).length
 }
-
-/**
- * 정확성 테스트
- * 테스트 10 〉	실패 (시간 초과)
- * 테스트 11 〉	실패 (시간 초과)
- * 테스트 12 〉	실패 (시간 초과)
- *
- * 효율성  테스트
- * 테스트 1 〉	실패 (시간 초과)
- * 테스트 2 〉	실패 (시간 초과)
- * 테스트 3 〉	실패 (시간 초과)
- * 테스트 4 〉	실패 (시간 초과)
- */
