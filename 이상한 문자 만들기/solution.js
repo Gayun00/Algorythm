@@ -1,15 +1,15 @@
 function solution(s) {
-  return s.split(' ').map(word => {
-      let result = '';
-      for(let i = 0; i < word.length; i++) {
+  let arr = [];
+  s.split(' ').forEach((word)=>{
+      for(i=0;i<word.length;i++) {
           if(i%2) {
-              result += word[i].toLowerCase();
+              arr.push(word[i])
           } else {
-              result += word[i].toUpperCase();
+              arr.push(word[i].toUpperCase())
           }
       }
-      return result;
-  }).join(' ');
+      arr.push(' ')
+  })
+      const joined = arr.join('')
 }
-//원본배열에 적용시키기 힘들 때는 map을 사용하자.
-//단순히 문자열을 합하려면 문자열 변수를 지정하고, +를 사용하면 된다.
+//map을 적극적으로 활용하자!!!
