@@ -1,15 +1,13 @@
 function solution(s) {
-  let arr = [];
-  s.split(' ').forEach((word)=>{
-      for(i=0;i<word.length;i++) {
+  return s.split(' ').map((word) => {
+      result = '';
+      for(i = 0; i < word.length; i++) {
           if(i%2) {
-              arr.push(word[i])
+              result += word[i].toLowerCase();    
           } else {
-              arr.push(word[i].toUpperCase())
+              result += word[i].toUpperCase();
           }
       }
-      arr.push(' ')
-  })
-      const joined = arr.join('')
+      return result;
+  }).join(' ')
 }
-//map을 적극적으로 활용하자!!!
