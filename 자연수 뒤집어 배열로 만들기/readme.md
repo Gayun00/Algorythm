@@ -14,7 +14,7 @@ n	return
 첫 번째 풀이는 통과되지 않았는데, 그 이유를 찾았다.
 sort()를 사용해 내림차순으로 정렬하는 것이 아닌, 그대로 순서를 뒤집는 것이다.
 예를 들어 12472를 넣으면 27421순으로 출력되어야 한다.
-```
+```js
 function solution(n) {
   const arr = [];
   String(n).split('').forEach((el) => {
@@ -30,7 +30,7 @@ function solution(n) {
 
 ### 두번째 풀이
 reverse()를 사용해 그대로 뒤집어주었다.
-```
+```js
 function solution(n) {
     const arr = [];
     String(n).split('').forEach((el) => {
