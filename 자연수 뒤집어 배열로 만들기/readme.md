@@ -8,6 +8,7 @@ n은 10,000,000,000이하인 자연수입니다.
 n	return
 12345	[5,4,3,2,1]
 
+
 # 풀이
 ### 첫번째 풀이
 첫 번째 풀이는 통과되지 않았는데, 그 이유를 찾았다.
@@ -25,4 +26,26 @@ function solution(n) {
       if(a < b) return 1})
   return sorted
 }
+```
+
+### 두번째 풀이
+reverse()를 사용해 그대로 뒤집어주었다.
+```
+function solution(n) {
+    const arr = [];
+    String(n).split('').forEach((el) => {
+        arr.push(Number.parseInt(el));
+    });
+    return arr.reverse();
+}
+```
+
+# Review
+## reverse()
+Array.prototype.reverse()는 배열을 반전시킨다.
+원본 배열을 변형하여 참조값을 반환한다.
+
+```
+a.reverse();
+console.log(a); // [3, 2, 1]
 ```

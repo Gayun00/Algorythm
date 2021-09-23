@@ -1,3 +1,5 @@
+//[실패] 첫번째 풀이: sort()사용
+
 function solution(n) {
   const arr = [];
   String(n).split('').forEach((el) => {
@@ -10,3 +12,12 @@ function solution(n) {
   return sorted
 }
 
+//[통과] 두번째 풀이: reverse()사용
+
+function solution(n) {
+  const arr = [];
+  String(n).split('').forEach((el) => {
+      arr.push(Number.parseInt(el));
+  });
+  return arr.reverse();
+}
