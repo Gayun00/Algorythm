@@ -67,14 +67,9 @@ function matrixElementsSum(matrix) {
 ```js
 function matrixElementsSum(matrix) {
     var total = 0;
-
-    // Navigate each column of rooms
-    // i = current column, j = current floor in column
     for (var i = 0; i < matrix[0].length; i++) {
         for (var j = 0; j < matrix.length; j++) {
             if (matrix[j][i] === 0) {
-                // This room is haunted, so we don't care about the rooms below it.
-                // Continue to the next column of rooms
                 break;
             }
             total += matrix[j][i];
@@ -83,3 +78,8 @@ function matrixElementsSum(matrix) {
     return total;
 }
 ```
+
+좀 더 효율적인 풀이이다. 다음 알고리즘 문제 때 참고하자! :
+
+1. 일일히 내 풀이처럼 0으로 표시하지 않고, break로 구문 중단
+2. 새로운 배열에 푸시한 후 reduce로 전체 배열 요소 합계를 구하는 대신 `total+=matrix[j][i]`사용
