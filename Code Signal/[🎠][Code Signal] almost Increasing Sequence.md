@@ -38,20 +38,20 @@ function almostIncreasingSequence(sequence) {
 
 ## 🎇다른풀이
 ```js
-function almostIncreasingSequence(seq) {
-  var bad=0
-  for(i = 1; i < seq.length; i++) if(seq[i] <= seq[i-1]) {
-    bad++;
-
-    if (bad>1)
-      return false;
-
-    if (seq[i] <= seq[i-2]
-      && seq[i+1] <= seq[i-1])
-      return false;
-  }
-
-  return true;
+function almostIncreasingSequence(sequence) {
+    var count = 0;
+    for(var i=1;i<sequence.length;i++){
+        if (sequence[i] <= sequence[i-1]) {
+            count = count+1;
+            if(count>1) {
+                return false
+            }
+            if(sequence[i]<=sequence[i-2] && sequence[i+1]<=sequence[i-1]) {
+                return false
+            }
+        }
+    }
+    return true
 }
 ```
 오름차순으로 정렬되지 않은 숫자를 발견하면 경우의 수를 나눈다.
