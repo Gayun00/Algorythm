@@ -26,12 +26,12 @@ matrix = [[1, 1, 1, 0],
 the output should be
 matrixElementsSum(matrix) = 9.
 ```
-![d](https://codesignal.s3.amazonaws.com/tasks/matrixElementsSum/img/example1.png?_tm=1624661706824)
+
 
 example 2
 
 Note that the free room in the final column makes the full column unsuitable for bots (not just the room directly beneath it). Thus, the answer is 1 + 1 + 1 + 5 + 1 = 9.
-(https://codesignal.s3.amazonaws.com/tasks/matrixElementsSum/img/example2.png?_tm=1624661707079)
+
 
 ## 🎇풀이
 ```js
