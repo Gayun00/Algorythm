@@ -1,0 +1,67 @@
+## 🧦 Decription
+Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.
+
+ 
+
+#### Example 1:
+![](https://images.velog.io/images/gygy/post/8b633eba-43a2-4d85-9d42-00ba9e20bbe6/image.png)
+
+```
+Input: l1 = [1,2,4], l2 = [1,3,4]
+Output: [1,1,2,3,4,4]
+```
+#### Example 2:
+```
+Input: l1 = [], l2 = []
+Output: []
+```
+#### Example 3:
+```
+Input: l1 = [], l2 = [0]
+Output: [0]
+```
+<br>
+<br>
+
+## 🧦 Solution
+
+
+![](https://images.velog.io/images/gygy/post/fdacdaa1-d87c-47a0-bafc-145d9934ef93/KakaoTalk_20211113_161010672.jpg)
+
+```js
+var mergeTwoLists = function(l1, l2) {
+      if (l1 === null) {
+        return l2;
+    }
+    
+    if (l2 === null) {
+        return l1;
+    }
+    
+    if (l1.val < l2.val) {
+        l1.next = mergeTwoLists(l1.next, l2);
+            console.log(l1,l2)
+        return l1;
+    } else {
+        l2.next = mergeTwoLists(l1, l2.next);
+            console.log(l1,l2)
+        return l2;
+    }
+};
+```
+
+아직 완전히 이해했다기에는 헷갈리는 부분이 있지만, 재귀함수를 이용한 풀이이다.
+
+<br>
+<br>
+
+## 🧦 Result
+- **Runtime:** 228 ms, faster than 5.22% of JavaScript online submissions for Merge Two Sorted Lists.
+- **Memory Usage:** 45.9 MB, less than 5.01% of JavaScript online submissions for Merge Two Sorted Lists.
+
+
+<br>
+<br>
+
+## Reference
+- https://leetcode.com/problems/merge-two-sorted-lists/discuss/1479757/Easy-to-Understand-Recursive-Solution
