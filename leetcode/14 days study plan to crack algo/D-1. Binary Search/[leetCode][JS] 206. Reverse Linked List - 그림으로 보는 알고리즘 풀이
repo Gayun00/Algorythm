@@ -1,0 +1,97 @@
+## 👔 Description
+
+
+Given the head of a singly linked list, reverse the list, and return the reversed list.
+
+ 
+
+#### Example 1:
+![](https://images.velog.io/images/gygy/post/b8cff3a5-8e67-4ae9-86e6-c9fc03e76b99/image.png)
+```
+Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]
+```
+#### Example 2:
+![](https://images.velog.io/images/gygy/post/8c9f6763-a529-49ec-903a-5e1355f3b080/image.png)
+```
+Input: head = [1,2]
+Output: [2,1]
+```
+#### Example 3:
+```
+Input: head = []
+Output: []
+```
+<br>
+<br>
+
+## 👔 Solution
+### 1. iteration
+이번 문제는 풀이를 봐도 유독 원리가 이해가 되지를 않았다.
+특히 대부분의 풀이에서 next = head.next와 같이 중복된 변수를 사용해 더 헷갈렸다.
+그래서 직접 그림을 그려가며 이해했는데, 나처럼 이번 문제를 답지를 봐도 어떻게 푸는지 이해가 안가는 사람이 있다면 도움이 되면 좋겠다.
+
+그림과 함께 코드를 보며 이해해보고, 코드 없이 그림을 보면서 다시 답안을 작성해봐도 좋을 것 같다.
+헷갈리지 않도록 변수이름을 설정했다.
+```
+시작 노드: head
+이전 노드: prev (초기값, 즉 맨처음 시작노드인 1의 이전값은 null로 설정)
+다음 노드: nextNode (while문에서 초기값을 head.next로 할당)
+```
+![](https://images.velog.io/images/gygy/post/90b9f64d-00e9-40ed-a7fb-b50149ad0293/KakaoTalk_20211113_142221042.jpg)
+
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+  let prev = null;
+  let next; 
+            
+  while(head){  
+    let nextNode = head.next;    
+    head.next = prev;
+    prev = head;
+    head = nextNode;
+  }  
+  return prev; 
+};
+
+```
+
+1. prev의 초기값은 null이다. nextNode의 값은 head.next로 시작노드의 다음으로 지정해준다.
+
+2. 시작노드 1의 다음은 2로 연결되어있다. 역방향으로 연결해야 하니 이전값인 prev (현재는 null)로 연결해준다.
+
+3. 연결이 끝났으니 다음 노드로 이동해 작업을 반복할 차례다. prev는 현재 시작노드인 head로 한칸 이동하고, 시작노드head는 다음 노드인 nextNode로 이동해 다음을 반복한다.
+
+4. head가 5에서 nextNode로 이동하면 null이기 때문에 while문은 종료된다. 
+이때 연결리스트는 모두 역방향으로 연결이 완료되었으며, prev의 위치는 node 5 즉 맨 끝 연결의 시작점이다. 
+prev - [5,4,3,2,1]이기 때문에 prev을 반환하면 된다. 
+(연결리스트는 연결된 순으로 해당 노드와 연결된 모든 노드를 반환한다)
+
+
+
+<br>
+<br>
+
+## 👔 Result
+- **Runtime**: 80 ms, faster than 65.16% of JavaScript online submissions for Reverse Linked List.
+- **Memory Usage**: 40.6 MB, less than 49.86% of JavaScript online submissions for Reverse Linked List.
+
+<br>
+<br>
+
+## Reference
+
+- https://leetcode.com/problems/reverse-linked-list/discuss/796499/Basic-JS-Solution
+- https://medium.com/positivelypassionate/linked-list%EB%A5%BC-%EB%92%A4%EC%A7%91%EA%B8%B0-reverse-linked-list-8e851c575b81
