@@ -20,12 +20,16 @@ Constraints:
 1 <= num <= 2^31 - 1
 ```
 
+<br>
+
+### 풀이
+
 ```js
 /**
  * @param {number} num
  * @return {boolean}
  */
-var isPerfectSquare = function (num) {
+const isPerfectSquare = function (num) {
 	let left = 0;
 	let right = num;
 
