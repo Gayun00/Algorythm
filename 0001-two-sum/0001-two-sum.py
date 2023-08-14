@@ -8,7 +8,5 @@ class Solution:
 
         for x in range(len(nums)):
             needed_number = target - nums[x]
-            print(x)
             if needed_number in dictionary and dictionary[needed_number] != x:
-                print([x, dictionary[needed_number]])
                 return [x, dictionary[needed_number]]
