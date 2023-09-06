@@ -14,6 +14,8 @@ class Solution:
         costs = {}
 
         # 우선순위큐로 pq에 첫번째 값 넣기. 정렬된 상태로 추가 및 삭제
+        #cost가 적은 순으로 우선순위 정렬이 되어야 한다. 
+        # 그래야 최소 비용 기준으로 계산이 가능
         heapq.heappush(pq, (0, k))
 
         while pq:
