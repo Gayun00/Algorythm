@@ -12,15 +12,15 @@ class Solution:
             carry, digit = divmod(l1.val + l2.val + carry, 10)
             node.next = ListNode(digit)
             l1, l2, node = l1.next, l2.next, node.next
-            
-        l = l1 or l2
+        
+        l =  l1 or l2
+        
         while l:
             carry, digit = divmod(l.val + carry, 10)
             node.next = ListNode(digit)
             l, node = l.next, node.next
+            
         if carry:
             node.next = ListNode(carry)
-        
-        return dummy.next
             
-        
+        return dummy.next
