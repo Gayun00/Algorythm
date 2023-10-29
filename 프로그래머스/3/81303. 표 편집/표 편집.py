@@ -1,55 +1,57 @@
 class Node:
     def __init__(self):
-        self.removed = False
         self.prev = None
         self.next = None
+        self.removed = False
+
 
 def solution(n, k, cmd):
-    answer = ""
-    nodeArr = [Node() for _ in range(n)]
+    deleted = []
+    nodes = [Node() for _ in range(n)]
+
     for i in range(1, n):
-        nodeArr[i - 1].next = nodeArr[i]
-        nodeArr[i].prev = nodeArr[i - 1]
-        
-    curr = nodeArr[k]
-    mystack = []
-    
-    for str in cmd:
-        if str[0] == "U":
-            x = int(str[2:])
-            for _ in range(x):
-                curr = curr.prev
-        elif str[0] == "D":
-            x = int(str[2:])
-            for _ in range(x):
-                curr = curr.next
-        elif str[0] == "C":
-            mystack.append(curr)
-            curr.removed = True
-            up = curr.prev
-            down = curr.next
+        nodes[i - 1].next = nodes[i]
+        nodes[i].prev = nodes[i - 1]
+
+    cur = nodes[k]
+
+    for command in cmd:
+        if command[0] == "U":
+            x = int(command[2:])
+            for i in range(x):
+                cur = cur.prev
+        elif command[0] == "D":
+            x = int(command[2:])
+            for i in range(x):
+                cur = cur.next
+        elif command[0] == "C":
+            cur.removed = True
+            deleted.append(cur)
+            up = cur.prev
+            down = cur.next
+
             if up:
                 up.next = down
             if down:
                 down.prev = up
-                curr = down
+                cur = down
             else:
-                curr = up
+                cur = up
         else:
-            node = mystack.pop()
-            node.removed = False
-            up = node.prev
-            down = node.next
+            deletedNode = deleted.pop()
+            deletedNode.removed = False
+            up = deletedNode.prev
+            down = deletedNode.next
+
             if up:
-                up.next = node
+                up.next = deletedNode
             if down:
-                down.prev = node
-    
+                down.prev = deletedNode
+
+    answer = ""
     for i in range(n):
-        if nodeArr[i].removed:
+        if nodes[i].removed:
             answer += "X"
         else:
             answer += "O"
     return answer
-            
-                
