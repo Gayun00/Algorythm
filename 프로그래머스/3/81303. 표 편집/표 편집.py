@@ -32,11 +32,11 @@ def solution(n, k, cmd):
 
             if up:
                 up.next = down
+                cur = up
+
             if down:
                 down.prev = up
                 cur = down
-            else:
-                cur = up
         else:
             deletedNode = deleted.pop()
             deletedNode.removed = False
