@@ -1,12 +1,10 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         dict = {}
-        for i in range(len(nums)):
-            num = nums[i]
-            
-            if (target - num) not in dict:
-                dict[num] = i
-            else:
-                return sorted([i, dict[target-num]])
-            
+        
+        for idx,num in enumerate(nums):
+            if num not in dict:
+                dict[num] = idx
+            if target-num in dict and idx != dict[target-num]:
+                return [idx, dict[target-num]]
             
