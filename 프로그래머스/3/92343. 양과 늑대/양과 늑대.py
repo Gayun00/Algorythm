@@ -1,27 +1,26 @@
-from typing import List,Dict
 from collections import defaultdict
 
-SHEEP = 0
-WOOLF = 1
-
 def solution(info, edges):
-    parent2children = build_parent2children(edges)
-    return max_sheep([0], parent2children, info,0,0)
-
-def build_parent2children(edges) -> Dict[int, List[int]]:
-    parent2children = defaultdict(list)
-    for parent, child in edges:
-        parent2children[parent].append(child)
-    return parent2children
-
-def max_sheep(nodes, parent2children, info, s, w):
-    if not nodes:
-        return s
-    max_s = s
+    graph = defaultdict(list)
+    answer = 0
     
-    for idx, node in enumerate(nodes):
-        if info[node] == SHEEP:
-            max_s = max(max_sheep(nodes[:idx] + nodes[idx+1:] + parent2children[node], parent2children, info, s+1, w), max_s)
-        elif s > w+1:
-            max_s = max(max_sheep(nodes[:idx] + nodes[idx+1:] + parent2children[node], parent2children, info, s, w+1), max_s)
-    return max_s
+    for source, target in edges:
+        graph[source].append(target)
+          
+    def dfs(idx, sheep, wolf, possible):
+        nonlocal answer
+        if info[idx] == 0:
+            sheep += 1
+            answer = max(answer, sheep)
+            
+        else:
+            wolf += 1
+        if wolf >= sheep:
+            return
+        possible.extend(graph[idx])
+        
+        for p in possible:
+            dfs(p, sheep, wolf, [i for i in possible if i!=p])
+    
+    dfs(0,0,0,[])
+    return answer
