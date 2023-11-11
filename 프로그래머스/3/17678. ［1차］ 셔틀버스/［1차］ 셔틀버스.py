@@ -21,4 +21,5 @@ def solution(n, t, m, timetable):
             answer = crewTime[can_ride_bus_idx - 1] - 1
             
     return str(answer//60).zfill(2) + ":" + str(answer % 60).zfill(2)
-    
+            
+        
