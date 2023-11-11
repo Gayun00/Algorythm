@@ -1,26 +1,25 @@
-import itertools
 import re
+import itertools
 
 def solution(user_id, banned_id):
     n = len(banned_id)
-    user_comb = itertools.permutations(user_id, n)
-    converted_banned = [string.replace('*','.') for string in banned_id]
+    converted_banned_id = [string.replace('*','.') for string in banned_id]
+    combined_user_id = itertools.permutations(user_id, n)
     answer = []
-        
-    for comb in user_comb:
-        comb_arr = list(comb)
+
+    for user_id in combined_user_id:
+        user = list(user_id)
         flag = True
         
         for i in range(n):
-            if re.match(converted_banned[i], comb_arr[i]) and len(converted_banned[i]) == len(comb_arr[i]):
+            if re.match(converted_banned_id[i], user[i]) and len(user[i]) == len(converted_banned_id[i]):
                 continue
             else:
                 flag = False
                 break
-        
+                
         if flag:
-            if sorted(comb_arr) not in answer:
-                answer.append(sorted(comb_arr))
+            if sorted(user) not in answer:
+                answer.append(sorted(user))
                 
     return len(answer)
-                
