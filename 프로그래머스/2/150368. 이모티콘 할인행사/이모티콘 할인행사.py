@@ -2,28 +2,27 @@ from itertools import product
 
 def solution(users, emoticons):
     discount_rates = [10, 20, 30, 40]
-    comb_discounts = list(product(discount_rates, repeat = len(emoticons)))
+    combined_discounts = list(product(discount_rates, repeat=len(emoticons)))
     result = []
     
-    for comb_discount in comb_discounts:
+    for discounts in combined_discounts:
         members = 0
         income = 0
         
-        for required_discount, budget in users:
+        for user_discount, user_price in users:
             purchased = 0
             
             for i in range(len(emoticons)):
-                if comb_discount[i] >= required_discount:
-                    price = emoticons[i] - emoticons[i] * comb_discount[i] * 0.01
-                    purchased += int(price)
-            if purchased >= budget:
-                members += 1
+                if user_discount <= discounts[i]:
+                    price = emoticons[i] - emoticons[i] * discounts[i] * 0.01
+                    purchased += price
+                    
+            if purchased >= user_price:
+                members +=1
             else:
                 income += purchased
-        result.append((members, income))
-        
-    answer = sorted(result, reverse=True, key=lambda x: (x[0], x[1]))
 
-    return answer[0]
-        
+        result.append((members, income))
+    answer = sorted(result, reverse=True, key=lambda x:(x[0], x[1]))
     
+    return answer[0]
