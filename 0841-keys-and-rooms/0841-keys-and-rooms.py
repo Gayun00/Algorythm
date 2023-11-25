@@ -1,22 +1,21 @@
-from collections import deque
+from collections import defaultdict, deque
 
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
-        n = len(rooms)
+        graph = defaultdict()
+        visited = [False] * len(rooms)
+        for room, keys in enumerate(rooms):
+            graph[room] = keys
         que = deque()
-        visited = [False] * n
-        visited[0] = True
         que.append(0)
-        
+
         while que:
             cur_room = que.popleft()
-            
-            for key in rooms[cur_room]:
-                if not visited[key]:
-                    que.append(key)
-                    visited[key] = True
-                    
+            if visited[cur_room]:
+                continue
+            visited[cur_room] = True
+
+            for key in graph[cur_room]:
+                que.append(key)
+
         return all(visited)
-            
-            
-        
