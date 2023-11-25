@@ -1,30 +1,30 @@
-from heapq import heappop, heappush
 from collections import defaultdict
+from heapq import heappush, heappop
+
 
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
         graph = defaultdict(list)
-        pq = []
-        costs = {}
         for time in times:
-            [source, target, distance] = time
-            graph[source].append((distance, target))
-        heap = heapq.heappush(pq, (0, k))
-        
+            [source, target, time] = time
+            graph[source].append((time, target))
+
+        pq = []
+        heappush(pq, (0, k))
+        times = {}
+        count = 0
+
         while pq:
-            cur_distance, cur_node = heapq.heappop(pq)
-            if cur_node not in costs:
-                costs[cur_node] = cur_distance
-                next_cost = 0
-                
-                for next_distance, next_node in graph[cur_node]:
-                    heapq.heappush(pq, (next_distance + cur_distance, next_node))    
-        
+            cur_time, cur_node = heappop(pq)
+
+            if cur_node not in times:
+                times[cur_node] = cur_time
+
+                for next_time, next_node in graph[cur_node]:
+                    heappush(pq, (next_time + cur_time, next_node))
+
         for i in range(1, n + 1):
-            if not i in costs:
-                return -1
-            
+            if not i in times:
+                return -1    
         
-        return max(costs.values())
-        
-        
+        return max(times.values())
