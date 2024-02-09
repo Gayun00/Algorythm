@@ -1,29 +1,9 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-#         topdown
-        dict= {}
+        dp = [0] * (n+1)
+        dp[0] = 1
+        dp[1] = 1
         
-        def dp(m):
-            if m == 1:
-                return 1
-            if m == 2:
-                return 2
-            if m not in dict:
-                dict[m] =  dp(m-1) + dp(m-2)
-            return dict[m]
-        return dp(n)
-    
-#         bottomup
-#         dict = {}
-#         if n == 1:
-#             return 1
-#         if n == 2:
-#             return 2
-#         dict[1] = 1
-#         dict[2] = 2
-        
-#         for i in range(3, n+1):
-#             dict[i] = dict[i-1] + dict[i-2]
-#         return dict[n]
-            
-        
+        for i in range(2,n+1):
+            dp[i] = dp[i-1] + dp[i-2]
+        return dp[n]
