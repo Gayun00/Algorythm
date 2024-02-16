@@ -1,25 +1,40 @@
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
-        def could_place(row, col):
-                for i in range(row):
-                    if board[i] == col or \
-                        board[i] - i == col - row or \
-                        board[i] + i == col + row:
-                        return False
-                return True
-
-        def place_queens(n, row):
+        columns = set()
+        negative = set()
+        positive = set()
+        
+        board = [['.'] * n for _ in range(n)]
+        res = []
+        
+        def backtrack(row):
             if row == n:
-                result.append(board[:])
+                copy = [''.join(row) for row in board]
+                res.append(copy)
                 return
-            for col in range(n):
-                if could_place(row, col):
-                    board[row] = col
-                    place_queens(n, row + 1)
-                    board[row] = 0
+            
 
-        result = []
-        board = [0] * n
-        place_queens(n, 0)
-        print(result)
-        return [["." * i + "Q" + "." * (n - i - 1) for i in sol] for sol in result]
+            
+            for col in range(n):
+                if col in columns or row+col in positive or row-col in negative:
+                    continue
+                columns.add(col)
+                negative.add(row-col)
+                positive.add(row+col)
+                board[row][col] = "Q"
+                
+                backtrack(row+1)
+                
+                columns.remove(col)
+                negative.remove(row-col)
+                positive.remove(row+col)
+                board[row][col] = "."
+                
+        backtrack(0)
+        return res
+                
+                
+                
+                
+                
+            
